@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Davide e le piumette felici</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffaf0;
+      color: #354236;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 250, 240, 0.94);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      padding: 15px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #43835a;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #354236;
+      margin-left: 25px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #e99b38;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 7% 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+      background:
+        radial-gradient(circle at top right, #ffe8a8, transparent 35%),
+        linear-gradient(135deg, #fffaf0, #eef8e9);
+    }
+
+    .hero-text h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1;
+      color: #39704b;
+      margin-bottom: 25px;
+    }
+
+    .hero-text h1 span {
+      color: #e69a37;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      color: #596455;
+    }
+
+    .button {
+      display: inline-block;
+      background: #43835a;
+      color: white;
+      padding: 14px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #e69a37;
+      transform: translateY(-2px);
+    }
+
+    /* FOTO HERO */
+    .hero-image {
+      height: 550px;
+      border-radius: 35px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(52, 73, 54, 0.2);
+      background: #dfead8;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* SEZIONI */
+    section {
+      padding: 90px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.8rem;
+      color: #39704b;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #70776e;
+    }
+
+    /* STORIA */
+    .story {
+      background: white;
+    }
+
+    .story-content {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      font-size: 1.15rem;
+    }
+
+    .story-content strong {
+      color: #43835a;
+    }
+
+    /* COSA FACCIAMO */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+    }
+
+    .card .icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #39704b;
+      margin-bottom: 10px;
+    }
+
+    /* GALLERIA */
+    .gallery {
+      background: #eef8e9;
+    }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .photo {
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #d7e5d1;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .photo:hover img {
+      transform: scale(1.07);
+    }
+
+    /* CONTATTI */
+    .contact {
+      text-align: center;
+      background: #39704b;
+      color: white;
+    }
+
+    .contact h2 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #e8f2e5;
+    }
+
+    .contact .button {
+      background: #f0a443;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #2d573b;
+      color: #dfeade;
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 850px) {
+      nav {
+        padding: 13px 5%;
+      }
+
+      nav a {
+        margin-left: 10px;
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+      }
+
+      .hero-image {
+        height: 400px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      nav .menu a {
+        display: none;
+      }
+
+      .hero-text h1 {
+        font-size: 3.2rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGAZIONE -->
+  <nav>
+    <div class="logo">🦜 Davide e le piumette felici</div>
+
+    <div class="menu">
+      <a href="#storia">La storia</a>
+      <a href="#attivita">Cosa facciamo</a>
+      <a href="#galleria">I nostri amici</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero">
+
+    <div class="hero-text">
+      <h1>
+        Davide e le<br>
+        <span>piumette felici</span>
+      </h1>
+
+      <p>
+        Un piccolo progetto nato da una grande passione:
+        recuperare, proteggere e regalare una nuova possibilità
+        ai nostri amici pappagalli.
+      </p>
+
+      <a href="#storia" class="button">
+        Scopri la nostra storia
+      </a>
+    </div>
+
+    <!--
+      FOTO COPERTINA:
+      inserisci qui: foto/copertina.jpg
+    -->
+    <div class="hero-image">
+      <img src="foto/copertina.jpg"
+           alt="Primo piano di un pappagallo">
+    </div>
+
+  </header>
+
+
+  <!-- STORIA -->
+  <section class="story" id="storia">
+
+    <div class="section-title">
+      <h2>Una passione diventata una missione 💚</h2>
+    </div>
+
+    <div class="story-content">
+
+      <p>
+        Tutto nasce dalla passione di <strong>Davide</strong> per i
+        pappagalli e dalla voglia di fare qualcosa di concreto per
+        questi splendidi animali.
+      </p>
+
+      <br>
+
+      <p>
+        Con il tempo questa passione lo ha spinto a dedicarsi al
+        <strong>recupero e alla protezione dei pappagalli</strong>,
+        offrendo loro attenzione, cura e un ambiente dove possano
+        sentirsi al sicuro.
+      </p>
+
+      <br>
+
+      <p>
+        Ogni piumetta ha la sua storia. Alcuni dei nostri piccoli
+        amici hanno avuto bisogno di essere recuperati, altri di
+        semplicemente trovare qualcuno disposto a prendersi cura
+        di loro.
+      </p>
+
+      <br>
+
+      <p>
+        <strong>Davide e le piumette felici</strong> nasce proprio
+        da questo: amore, rispetto e tanta voglia di proteggere
+        questi meravigliosi amici piumati. 🦜
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- COSA FACCIAMO -->
+  <section id="attivita">
+
+    <div class="section-title">
+      <h2>Cosa facciamo</h2>
+      <p>Ogni piumetta merita attenzione e rispetto.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">🦜</div>
+        <h3>Recupero</h3>
+        <p>
+          Ci prendiamo cura dei pappagalli che hanno bisogno
+          di aiuto, cercando di offrire loro un ambiente sicuro.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">❤️</div>
+        <h3>Protezione</h3>
+        <p>
+          La loro sicurezza e il loro benessere sono al centro
+          di ogni nostra attività.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌿</div>
+        <h3>Cura</h3>
+        <p>
+          Ogni pappagallo viene seguito con attenzione,
+          pazienza e rispetto per le sue esigenze.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GALLERIA -->
+  <section class="gallery" id="galleria">
+
+    <div class="section-title">
+      <h2>Le nostre piumette felici 🪶</h2>
+      <p>
+        Qui puoi inserire le foto dei pappagalli che hai recuperato
+        e dei tuoi piccoli amici.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- FOTO 1 -->
+      <div class="photo">
+        <img src="foto/pappagallo1.jpg"
+             alt="Pappagallo recuperato">
+      </div>
+
+      <!-- FOTO 2 -->
+      <div class="photo">
+        <img src="foto/pappagallo2.jpg"
+             alt="Pappagallo">
+      </div>
+
+      <!-- FOTO 3 -->
+      <div class="photo">
+        <img src="foto/pappagallo3.jpg"
+             alt="Pappagallo">
+      </div>
+
+      <!-- FOTO 4 -->
+      <div class="photo">
+        <img src="foto/pappagallo4.jpg"
+             alt="Pappagallo">
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTATTI -->
+  <section class="contact" id="contatti">
+
+    <h2>Hai bisogno di aiuto? 🦜</h2>
+
+    <p>
+      Se hai trovato un pappagallo in difficoltà o vuoi saperne
+      di più sull'attività di Davide e le piumette felici,
+      contattaci.
+    </p>
+
+    <!-- SOSTITUISCI L'INDIRIZZO CON LA TUA EMAIL -->
+    <a href="mailto:INSERISCI-LA-TUA-EMAIL@example.com"
+       class="button">
+      Contattaci
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Davide e le piumette felici · Con amore per i nostri amici piumati 🪶
+  </footer>
+
+</body>
+</html>
